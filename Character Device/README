@@ -1,0 +1,5 @@
+Steps to run the code:
+make
+sudo insmod chardevice.ko
+sudo chmod a+r+w /dev/process_list
+./test.out

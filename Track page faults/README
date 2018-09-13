@@ -1,0 +1,8 @@
+Steps to run the code:
+
+su
+make
+insmod chardevice.ko process_id=<number>
+
+To run user space code:
+./test.out

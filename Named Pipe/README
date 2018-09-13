@@ -1,0 +1,33 @@
+Steps to run the code:
+
+Place the producer and consumer programs in the current folder as the makefile generates output files for them as well.
+
+su
+make
+insmod chardevice.ko
+./producer.o /dev/line_pipe
+./consumer.o /dev/line_pipe
+
+The size of pipe is defined in code. Considered to be 10.
+
+Report for Task B:
+
+1) Run one consumer and one producer concurrently.
+a) Kill the producer with Ctrl-C. Leave consumer running. What happens and why?
+Answer) Following error is displayed :
+error reading ret=0 errno=0 perror: Success
+This happens because when the producer is killed, the write end of the pipe is broken. Hence, when consumer tries to read from pipe, there is nothing available and it returns the above error.
+
+b) Kill the consumer with Ctrl-C. Leave producer running. What happens and why? 
+Answer) Following error is displayed :
+error writing ret=-1 errno=32 perror: Broken pipe
+This happens because when the consumer is killed, the read end of the pipe is broken. Hence, when producer tries to write into pipe, it returns the above error.
+
+2) Run one consumer and multiple producers concurrently.
+Answer) The producers produce item at same time and put in the pipe. The consumer reads each item produced by the producers only once.
+
+3) Run multiple consumers and one producer concurrently.
+Answer) The producer produces item and puts in the pipe. The consumers read item from the pipe one at a time and every item once. But after some time some of the consumers block for ever as they do not get a chance to read as the remaining consumers are constantly reading from pipe.
+
+4) Run multiple consumers and multiple producers concurrently.
+Answer) The producers produce item at same time and put in the pipe. The consumers read item from the pipe one at a time and every item once. But after some time some of the consumers block for ever as they do not get a chance to read as the remaining consumers are constantly reading from pipe.

@@ -1,0 +1,57 @@
+Program accepts two command-line arguments H and C.
+If the height H is greater than 1, C child processes are created using fork().
+Parent waits for all of the children to complete using the wait() system call.
+It waits only after creating all children.
+Parent terminates after all child processes terminate.
+
+Recursion is done using execl()
+
+Error handling is done wherever required.
+
+Test Cases :
+
+1)
+./akulka17_assignment1.out 2 3
+
+
+		(5907): Process starting
+		(5907): Parent's id = (5893)
+		(5907): Height in the tree = (2)
+		(5907): Creating (3) children at height (1)
+
+
+	(5908): Process starting
+	(5908): Parent's id = (5907)
+	(5908): Height in the tree = (1)
+	(5908): Creating (3) children at height (0)
+
+
+	(5908): Terminating at height (1)
+
+
+	(5909): Process starting
+	(5909): Parent's id = (5907)
+	(5909): Height in the tree = (1)
+	(5909): Creating (3) children at height (0)
+
+
+	(5909): Terminating at height (1)
+
+
+	(5910): Process starting
+	(5910): Parent's id = (5907)
+	(5910): Height in the tree = (1)
+	(5910): Creating (3) children at height (0)
+
+
+	(5910): Terminating at height (1)
+
+
+		(5907): Terminating at height (2)
+
+
+2)
+./akulka17_assignment1.out 1 r
+
+Argument must be a decimal number
+Usage : ./akulka17_assignment1.out height children
